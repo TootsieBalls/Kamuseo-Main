@@ -1,5 +1,5 @@
 let menuVisible = false;
-let darkMode = false;
+let darkMode = true;
 
 function showMenu() {
     const menu = document.querySelector(".menu-bar");
