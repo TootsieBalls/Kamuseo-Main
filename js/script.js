@@ -59,8 +59,10 @@ function toggleDarkMode() {
     if (darkMode) {
         document.body.classList.add('light-mode');
         document.getElementById('darkToggle').src = "css/icons/light.png";
+        document.getElementById('icon-nav').src = "css/icons/icon-dark.png";
     } else { document.body.classList.remove('light-mode');
         document.getElementById('darkToggle').src = "css/icons/dark.png";
+        document.getElementById('icon-nav').src = "css/icons/icon-light.png";
      }
     darkMode = !darkMode;
 }
