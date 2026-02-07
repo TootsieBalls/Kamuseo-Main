@@ -10,7 +10,7 @@
     <div class="login-container">
         <div class="login-box">
             <!-- Login Type Selection -->
-            <div class="loginindex" id="loginType">
+            <div class="loginindex" id="loginType" style="display: none;">
                 <img src="css/icons/logo.png" alt="Kamuseo Logo" class="logo">
                 <p class="title">Select Login Type</p>
                 <button type="button" class="btn-type" onclick="logInSwitch(2)">
@@ -51,6 +51,7 @@
                 <button type="button" class="btn-back" onclick="logInSwitch(0)">← Back</button>
                 <img src="css/icons/icon.png" alt="Kamuseo Icon" class="icon">
                 <p id="formTitle">User Log In</p>
+                <div id="signInMessage" class="messageDiv" style="display:none"></div>
                 <form>
                     <div class="form-group">
                         <label for="email">Email:</label>
@@ -69,34 +70,39 @@
                 <p class="link-text">Don't have an account? <a onclick="logInSwitch(3)">Sign Up</a></p>
             </div>
 
-            <div class="loginindex" id="signup" style="display: none;">
+            <div class="loginindex" id="signup" >
                 <button type="button" class="btn-back" onclick="logInSwitch(0)">← Back</button>
                 <p id="formTitle">Sign Up</p>
+                <div id="signUpMessage" class="messageDiv" style="display:block"></div>
                 <form>
                     <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username-sp" name="username" placeholder="What should we call you?" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email-sp" name="email" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <label for="fName">First Name:</label>
+                        <input type="text" id="fName-sp" name="fName" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lName">Last Name:</label>
+                        <input type="text" id="lName-sp" name="lName" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <input type="password" id="password-sp" name="password" placeholder="Enter your password" required>
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password:</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                        <input type="password" id="confirmPassword-sp" name="confirmPassword" placeholder="Confirm your password" required>
                     </div>
                     <div class="form-radio">
-                        <p style="margin-bottom: 8px;">Top or Bottom?</p>
-                        <input type="radio" id="top" name="topOrBottom" value="top" required>
-                        <label for="top">Top</label>
-                        <input type="radio" id="bottom" name="topOrBottom" value="bottom" required>
-                        <label for="bottom">Bottom</label>
+                        <p style="margin-bottom: 8px;">Gender</p>
+                        <input type="radio" id="male" name="gender" value="male" required>
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female" required>
+                        <label for="female">Female</label>
                     </div>
-                    <button type="submit" class="btn-type">Sign Up</button>
+                    <button type="submit" class="btn-type" id="submitSignUp">Sign Up</button>
                 </form>
             </div>
         </div>
