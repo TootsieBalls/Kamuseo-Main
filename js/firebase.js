@@ -21,7 +21,7 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  //const analytics = getAnalytics(app);
 
   function showMessage(message, divId){
     var messsageDiv=document.getElementById(divId);
@@ -59,11 +59,39 @@
             console.error("error writing document", error);
         });
     }).catch((error)=> {
+    console.error(error.code, error.message);
+
+    if (error.code === 'auth/email-already-in-use') {
+        showMessage('Email Address Already Exists', 'signUpMessage');
+    } else if (error.code === 'auth/weak-password') {
+        showMessage('Password should be at least 6 characters', 'signUpMessage');
+    } else if (error.code === 'auth/invalid-email') {
+        showMessage('Invalid email address', 'signUpMessage');
+    } else {
+        showMessage(error.message, 'signUpMessage');
+    }
+    })
+  });
+
+  const signIn=document.getElementById('submitSignIn');
+
+  signIn.addEventListener('click', (event)=>{
+    event.preventDefault();
+    const email=document.getElementById('usr-email').value;
+    const password=document.getElementById('usr-password').value;
+    const auth=getAuth();
+
+    signInWithEmailAndPassword(auth, email,password).then((userCredential) => {
+        showMessage('login is successful', 'signInMessage');
+        const user=userCredential.user;
+        localStorage.setItem('loggedInUserId', user.uid);
+        window.location.href='home.html';
+    }).catch((error) => {
         const errorCode=error.code;
-        if(errorCode=='auth/email-already-in-use') {
-            showMessage('Email Address Already Exist', 'signUpMessage')
+        if(errorCode==='auth/invalid-credential') {
+            showMessage('Incorrect Email or Password', 'signInMessage');
         } else {
-            showMessage('unable to create user', 'signUpMessage');
+            showMessage('Account Does Not Exist', 'signInMessage');
         }
     })
   })

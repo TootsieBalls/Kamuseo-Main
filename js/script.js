@@ -58,11 +58,11 @@ window.addEventListener('keydown', (e) => {
 function toggleDarkMode() {
     if (darkMode) {
         document.body.classList.add('light-mode');
-        document.getElementById('darkToggle').src = "css/icons/light.png";
-        document.getElementById('icon-nav').src = "css/icons/icon-dark.png";
+        document.getElementById('darkToggle').src = "css/icons/light.webp";
+        document.getElementById('icon-nav').src = "css/icons/icon-dark.webp";
     } else { document.body.classList.remove('light-mode');
-        document.getElementById('darkToggle').src = "css/icons/dark.png";
-        document.getElementById('icon-nav').src = "css/icons/icon-light.png";
+        document.getElementById('darkToggle').src = "css/icons/dark.webp";
+        document.getElementById('icon-nav').src = "css/icons/icon-light.webp";
      }
     darkMode = !darkMode;
 }
