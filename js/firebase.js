@@ -1,107 +1,69 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+// Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+  import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+  import {getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js"
 
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDQ_poDvhiZFPmFpPFeEnOku1cGcNxKRRM",
-    authDomain: "kamuseo-dadf9.firebaseapp.com",
-    projectId: "kamuseo-dadf9",
-    storageBucket: "kamuseo-dadf9.firebasestorage.app",
-    messagingSenderId: "604608096712",
-    appId: "1:604608096712:web:21ecc54df78b2844b0f8fd",
-    measurementId: "G-ELWE92RRGY"
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBrBpjTkPlOM7fDKHx97QYZGzGET-XWpEs",
+    authDomain: "kamuseo-651a2.firebaseapp.com",
+    projectId: "kamuseo-651a2",
+    storageBucket: "kamuseo-651a2.firebasestorage.app",
+    messagingSenderId: "281398036298",
+    appId: "1:281398036298:web:ecc0aca0d0d48b473f23b3",
+    measurementId: "G-QGJB7ERWYW"
   };
 
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+  function showMessage(message, divId){
+    var messsageDiv=document.getElementById(divId);
+    messsageDiv.style.display='block';
+    messsageDiv.innerHTML=message;
+    messsageDiv.style.opacity=1;
+    setTimeout(function(){
+        messsageDiv.style.opacity=0;
+    },5000)
 
+  }
+  const signUp = document.getElementById('submitSignUp');
+  signUp.addEventListener('click', (event)=> {
+    event.preventDefault();
+    const email=document.getElementById('email-sp').value;
+    const fName=document.getElementById('fName-sp').value;
+    const lName=document.getElementById('lName-sp').value;
+    const password=document.getElementById('password-sp').value;
 
-window.addEventListener("DOMContentLoaded", () => {
+    const auth=getAuth();
+    const db=getFirestore();
 
- 
-  const loginBtn = document.getElementById("submitSignIn");
-  if (loginBtn) {
-    loginBtn.addEventListener("click", async () => {
-
-      
-      const emailInput = document.getElementById("email-user");
-      const passwordInput = document.getElementById("password-user");
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value.trim();
-
-      if (!email || !password) {
-        alert("Please fill in all fields");
-        return;
-      }
-
-      try {
-        const userCred = await signInWithEmailAndPassword(auth, email, password);
-        const uid = userCred.user.uid;
-
-        // Ensure user exists in Firestore
-        const userRef = doc(db, "users", uid);
-        const snap = await getDoc(userRef);
-
-        if (!snap.exists()) {
-          await setDoc(userRef, {
+    createUserWithEmailAndPassword(auth, email, password).then((userCredential)=> {
+        const user=userCredential.user;
+        const userData={
             email: email,
-            createdAt: new Date()
-          });
-        }
-
-        window.location.href = "home.html";
-      } catch (error) {
-        alert(error.message);
-      }
-    });
-  }
-
-
-  const signupBtn = document.getElementById("submitSignUp");
-  if (signupBtn) {
-    signupBtn.addEventListener("click", async () => {
-
-     
-      const email = document.getElementById("email-sp").value.trim();
-      const password = document.getElementById("password-sp").value.trim();
-      const fName = document.getElementById("fName-sp").value.trim();
-      const lName = document.getElementById("lName-sp").value.trim();
-
-      if (!email || !password || !fName || !lName) {
-        alert("Please complete all fields");
-        return;
-      }
-
-      try {
-        const userCred = await createUserWithEmailAndPassword(auth, email, password);
-        const uid = userCred.user.uid;
-
-        await setDoc(doc(db, "users", uid), {
-          email,
-          firstName: fName,
-          lastName: lName,
-          role: "user",
-          createdAt: new Date()
+            firstName: fName,
+            lastName: lName,
+        };
+        showMessage('Account Created Successfully', 'signUpMessage');
+        const docRef=doc(db, "users", user.uid);
+        setDoc(docRef, userData).then(()=>{
+            window.location.href='index.html';
+        }).catch((error)=>{
+            console.error("error writing document", error);
         });
-
-        window.location.href = "home.html";
-      } catch (error) {
-        alert(error.message);
-      }
-    });
-  }
-
-});
+    }).catch((error)=> {
+        const errorCode=error.code;
+        if(errorCode=='auth/email-already-in-use') {
+            showMessage('Email Address Already Exist', 'signUpMessage')
+        } else {
+            showMessage('unable to create user', 'signUpMessage');
+        }
+    })
+  })

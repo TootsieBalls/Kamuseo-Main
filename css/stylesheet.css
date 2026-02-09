@@ -34,7 +34,7 @@
 
     body.loginbg {
         font-family: Arial, sans-serif;
-        background: linear-gradient(rgba(255, 220, 166, 0.75), rgba(255, 220, 166, 0.75)), url('image/natmuseum.webp') no-repeat center/cover;
+        background: linear-gradient(rgba(255, 220, 166, 0.75), rgba(255, 220, 166, 0.75)), url('image/natmuseum.jpg') no-repeat center/cover;
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -397,18 +397,18 @@
         box-shadow: 0 0px 10px rgba(0, 0, 0, 0.35);
     }
     #e1 {
-        background: url('image/entrance1.webp');
+        background: url('image/entrance1.jpg');
         background-size: auto 100%;
         background-position: center;
     
     }
     #e2 {
-        background: url('image/entrance2.webp');
+        background: url('image/entrance2.jpg');
         background-size: auto 100%;
         background-position: center;
     }
     #e3 {
-        background: url('image/entrance3.webp');
+        background: url('image/entrance3.jpg');
         background-size: auto 100%;
         background-position: center;
     }
