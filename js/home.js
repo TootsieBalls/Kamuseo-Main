@@ -33,4 +33,4 @@ import {getFirestore, getDoc, doc} from "https://www.gstatic.com/firebasejs/12.9
             }
         })
     }
-  })
+  });
