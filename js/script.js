@@ -2,16 +2,14 @@ let menuVisible = false;
 let darkMode = true;
 
 function showMenu() {
-    const menu = document.querySelector(".menu-bar");
-    const img = document.getElementById("toggle-menu");
+    menuVisible = !menuVisible;
     if (menuVisible) {
-        menu.style.display = "none";
+        document.getElementById("sideBar").style.display = "none";
         img.src = "assets/icons/menuoff.png";
     } else {
-        menu.style.display = "block";
+        document.getElementById("sideBar").style.display = "flex";
         img.src = "assets/icons/menuon.png";
     }
-    menuVisible = !menuVisible;
 }
 function showLoginForm(type) {
     document.getElementById('loginType').style.display = 'none';
@@ -66,25 +64,52 @@ function toggleDarkMode() {
      }
     darkMode = !darkMode;
 }
-
-function navIndex(index) {
-    document.querySelectorAll('.homeindex').forEach(el => el.style.display = 'none');
-    document.querySelectorAll('.navlink').forEach(el => el.classList.remove("active"));
-    switch (index) {
-        case 1:
-            document.getElementById('home').style.display = 'block';
-            document.getElementById('navhome').classList.add("active");
+function removeTheme() {
+    document.body.classList.remove('light-theme');
+    document.body.classList.remove('pink-theme');
+    document.body.classList.remove('ocean-theme');
+}
+function changeTheme() {
+    const th = document.getElementById('themes').value;
+    switch(th) {
+        case 'light':
+            removeTheme();
+            document.body.classList.add('light-theme');
             break;
-        case 2:
-            document.getElementById('aboutus').style.display = 'block';
-            document.getElementById('navabout').classList.add("active");
+        case 'pink':
+            removeTheme();
+            document.body.classList.add('pink-theme');
             break;
-        case 3:
-            document.getElementById('contact').style.display = 'flex';
-            document.getElementById('navcontact').classList.add("active");
+        case 'ocean':
+            removeTheme();
+            document.body.classList.add('ocean-theme');
             break;
         default:
-            document.getElementById('loginType').style.display = 'block';
-            document.getElementById('navhome').classList.add("active");
+            removeTheme();
+    }
+}
+function navIndex(index) {
+    document.querySelectorAll('.homeindex').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.navindex').forEach(el => el.classList.remove("active"));
+    switch (index) {
+        case 1:
+            document.getElementById('homef').style.display = 'block';
+            document.getElementById('nav1').classList.add("active");
+            break;
+        case 2:
+            document.getElementById('aboutusf').style.display = 'block';
+            document.getElementById('nav2').classList.add("active");
+            break;
+        case 3:
+            document.getElementById('auctionf').style.display = 'block';
+            document.getElementById('nav3').classList.add("active");
+            break;
+        case 4:
+            document.getElementById('artistf').style.display = 'block';
+            document.getElementById('nav4').classList.add("active");
+            break;
+        default:
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('nav1').classList.add("active");
     }
 }
