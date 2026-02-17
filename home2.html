@@ -18,16 +18,22 @@
         <div class="maindiv">
             <div class="homeindex" id="homef">
                 <div class="home-section">
+                    <p id="curContest">Current Contest</p>
+                    <p id="subdeadline">Submission Deadline: <p id="deadlineDate"> 01/01/26 </p> </p>
+                    <button id="joinContest">
+                    Join Contest
+                    </button>
                 </div>
+                <p class="bodyTitle">Featured Artworks</p>
                 <div class="featured-artworks">
                     <div id="rankone" class="art-featured">
                         <div>
                             <div class = "gold-frame">
                                 <div id="rankone" class="artwork">
-                                    
+                                    <img class="artwork"src="css/image/Spoliarium.jpg" alt="">
                                 </div>
                             </div>
-                            <p>1at Place</p>
+                            <p>1st Place</p>
                         </div>
                         
                     </div>
@@ -35,6 +41,7 @@
                         <div>
                             <div class = "iron-frame">
                                 <div id="ranktwo" class="artwork">
+                                    <img class="artwork" src="css/image/Tampuhan.jpg" alt="">
                                 </div>
                             </div>
                             <p>2nd Place</p>
@@ -44,7 +51,7 @@
                         <div>
                             <div class = "bronze-frame">
                                 <div id="rankthree" class="artwork">
-                                    
+                                    <img class="artwork" src="css/image/portraitlady.jpg" alt="">
                                 </div>
                             </div>
                             <p>3rd Place</p>
@@ -62,7 +69,61 @@
                 </div>
             </div>
             <div class="homeindex" id="auctionf" style="display:none;">
-
+                <div class="fullAucCt" id="fullAucBox" style="display:none;">
+                    <div class="full-auc">
+                        <div class="aucbody">
+                            <div class="imgauc">
+                                <img id="fullAucImg" src="css/image/Tampuhan.jpg">
+                            </div>
+                            <div class="descauc">
+                                <p id="auctitle">TITLE</p>
+                                <p id="aucartdesc">Ang bango-bango ng bulaklak
+                            'Pag inaamoy 'pag inaamoy
+                            'Pag inaamoy anong sarap
+                            Ang bango-bango ang sarap-sarap
+                            Amuyin ang bulaklak
+                            Ang laki-laki ang laki-laki
+                            Ang laki-laki ng bulaklak
+                            Ang pula-pula ang pula-pula
+                            Ang pula-pula ng bulaklak
+                            Ang laki-laki ang pula-pula
+                            Ng kulay ng bulaklak
+                            Bubuka ang bulaklak papasok ang reyna
+                            Sasayaw ng cha-cha ang saya-saya
+                            Boom-ti-ya-ya boom-ti-ya-ya boom-ye-ye
+                            Boom-ti-ya-ya boom-ti-ya-ya boom-ye-ye</p>
+                            </div>
+                            <div class="biddingArea">
+                                <p>Current Bid:<p>$999,999,999</p></p>
+                                <input id="offerbid" type="number"><button>Offer Bid</button>
+                            </div>
+                        </div>
+                            
+                        <span onclick="closeFullAuc()">X</span>
+                    </div>
+                </div>
+                
+                <input type="text" placeholder="Search" class="searchbar">
+                <div class="aucCont">
+                    <div class="aucart"><img src="css/image/Tampuhan.jpg"><div class="aucTitle"><p id="auc-title">dsdddddddddcccccccdddddddddddddddddd</p><p id="auc-price">$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Spoliarium.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/portraitlady.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Tampuhan.jpg"><div class="aucTitle"><p id="auc-title">dsdddddddddcccccccdddddddddddddddddd</p><p id="auc-price">$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Spoliarium.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/portraitlady.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Tampuhan.jpg"><div class="aucTitle"><p id="auc-title">dsdddddddddcccccccdddddddddddddddddd</p><p id="auc-price">$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Spoliarium.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/portraitlady.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Tampuhan.jpg"><div class="aucTitle"><p id="auc-title">dsdddddddddcccccccdddddddddddddddddd</p><p id="auc-price">$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Spoliarium.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/portraitlady.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Tampuhan.jpg"><div class="aucTitle"><p id="auc-title">dsdddddddddcccccccdddddddddddddddddd</p><p id="auc-price">$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Spoliarium.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/portraitlady.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Tampuhan.jpg"><div class="aucTitle"><p id="auc-title">dsdddddddddcccccccdddddddddddddddddd</p><p id="auc-price">$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/Spoliarium.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                    <div class="aucart"><img src="css/image/portraitlady.jpg"><div><p class="aucTitle"><p>sample image only</p></p><p>$999,999,999</p></div></div>
+                </div>
             </div>
             <div class="homeindex" id="artistf" style="display:none;">
 
@@ -85,11 +146,11 @@
                     -->
                 <div class="missionvision">
                     <div>
-                        <h2>Mission</h2>
+                        <h1>Mission</h1>
                         <p>Mission KaMuseo aims to be a space wherein artists can freely show their art pieces while keeping the feeling of nostalgia and vibes of a real museum. </p>
                     </div>
                     <div>
-                        <h2>Vision</h2>
+                        <h1>Vision</h1>
                         <p>To be an online platform that encourages arts and safe spaces for artists and to be known as a digital museum. Successfully influenced the other that digital art and traditional art are both important and deserve equal recognition</p>
                     </div>
                     
@@ -105,12 +166,12 @@
         <!-- SIDE BAR -->
         <div class="sidebar" id="sideBar">
             <div id="smenu">
-                <input type="text" placeholder="Search" class="searchbar">
                 <ul>
+                    <li class="usr-pfp"><div class="userprofile"><img src="css/image/Juanluna.jpg"></div></li>
                     <li><a class="navindex" onclick="navIndex(1)" id="nav1">Home</a></li>
                     <li><a class="navindex" onclick="navIndex(2)" id="nav2">About Us</a></li>
-                    <li><a class="navindex" onclick="navIndex(3)" id="nav3" hidden>Auction</a></li>
-                    <li><a class="navindex" onclick="navIndex(4)" id="nav4" hidden>Artist</a></li>
+                    <li><a class="navindex" onclick="navIndex(3)" id="nav3" >Auction</a></li>
+                    <li><a class="navindex" onclick="navIndex(4)" id="nav4" style="display: none;">Artist</a></li>
                     <li><label for="themes">Theme </label>
                         <select id="themes">
                         <option value="dark">Dark</option>
@@ -121,6 +182,7 @@
                     </li>
                     <li>
                         <button onclick="changeTheme()">Select</button></li>
+                    <li><a class="navindex" style="margin-top: 15px;" id="nav4">Log Out</a></li>
                 </ul>
             </div>
             <div id="saccount">
@@ -128,6 +190,6 @@
             </div>
         </div>
     </main>
-    <script src="js/script.js"></script>
+    <script src="js/home2.js"></script>
 </body>
 </html>

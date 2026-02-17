@@ -25,33 +25,48 @@ function backToTypeSelection() {
 const scroller = document.querySelector('.horizontal-scroll');
 const floor = document.querySelector('.floor');
 const step = 200; // increase this for faster arrow scroll
-
+const stopscroll = document.querySelector('.fullArtBox');
 // Existing wheel scroll → horizontal movement
+
+// Always attach listeners
 scroller.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    scroller.scrollLeft += e.deltaY; // down → right, up → left
-    syncFloor();
+    if (getComputedStyle(stopscroll).display === "none") {
+        e.preventDefault();
+        scroller.scrollLeft += e.deltaY;
+        syncFloor();
+    } else {
+        // Allow normal vertical scroll (do nothing)
+    }
 }, { passive: false });
 
-// Keep floor synced if scrollLeft changes by other means
-scroller.addEventListener('scroll', syncFloor);
+scroller.addEventListener('scroll', () => {
+    if (getComputedStyle(stopscroll).display === "none") {
+        syncFloor();
+    }
+});
+
+window.addEventListener('keydown', (e) => {
+    if (getComputedStyle(stopscroll).display === "none") {
+        const max = scroller.scrollWidth - scroller.clientWidth;
+
+        if (e.key === "ArrowRight") {
+            scroller.scrollLeft = Math.min(scroller.scrollLeft + step, max);
+            syncFloor();
+        } 
+        else if (e.key === "ArrowLeft") {
+            scroller.scrollLeft = Math.max(scroller.scrollLeft - step, 0);
+            syncFloor();
+        }
+    } 
+    else {
+        // Do nothing if stopscroll is visible
+    }
+});
 
 function syncFloor() {
     floor.style.backgroundPositionX = `${-scroller.scrollLeft}px`;
 }
-
-// Arrow key navigation
-window.addEventListener('keydown', (e) => {
-    const max = scroller.scrollWidth - scroller.clientWidth;
-
-    if (e.key === "ArrowRight") {
-        scroller.scrollLeft = Math.min(scroller.scrollLeft + step, max);
-        syncFloor();
-    } else if (e.key === "ArrowLeft") {
-        scroller.scrollLeft = Math.max(scroller.scrollLeft - step, 0);
-        syncFloor();
-    }
-});
+    
 
 function toggleDarkMode() {
     if (darkMode) {
@@ -112,4 +127,17 @@ function navIndex(index) {
             document.getElementById('home').style.display = 'block';
             document.getElementById('nav1').classList.add("active");
     }
+}
+document.querySelectorAll('.aucart').forEach(function(card) {
+    card.addEventListener('click', function() {
+        const img = this.querySelector('img');
+        fullAucBox.style.display = "flex";
+        fullAuc.src = img.src;  
+    });
+});
+function closeFullArt() {
+    document.querySelector('.fullArtBox').style.display = 'none';
+}
+function openFullArt() {
+    document.querySelector('.fullArtBox').style.display = 'flex';
 }

@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        ::-webkit-scrollbar-track {
+            background: none;
+        }
         * {
             box-sizing: border-box;
         }
@@ -29,6 +32,8 @@
             max-width: 400px;
             max-height: 400px;
             object-fit: contain;
+            transition: transform 0.4s ease;
+            transform-origin: center center;
         }
         .art div {
             width: 100%;
@@ -43,13 +48,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            cursor: pointer;
         }
-        .flip-art-front, .flip-art-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
+        .artimg:hover {
+            transform: translateY(-15px);
         }
         .floor {
             will-change: transform, background-position;
@@ -85,7 +87,8 @@
             -webkit-overflow-scrolling: touch;
         }
         .bckbtn {
-            position: absolute;
+            z-index: 2;
+            position: fixed;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.226);
             width: 50px;
@@ -93,16 +96,126 @@
             text-decoration: none;
             padding: 50vh 5px;
         }
+        .fullArtBox {
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+        }
+        .fullArtContainer {
+            width: 90%;
+            height: 90%;
+            margin: 2.5% 5%;
+            display: flex;
+            align-items: center;
+            background-image: url('css/image/paper.webp');
+            background-repeat: repeat;
+            background-size: 300px 300px;
+            background-position: top left;
+            overflow: hidden;
+        }
+        .artDiv {
+            width: 100%;
+            max-width: 40%;
+        }
+        .artDesc {
+            width: 60%;
+            max-width: 60%;
+            padding: 5%;
+        }
+        .artDesc p {
+            width: 100%;
+            white-space: pre-line;
+            overflow-wrap: break-word;
+        }
+        .artDiv img {
+            min-width: 200px;
+            width: 100%;
+            max-height: 100%;
+            display: flex;
+            margin: 5%;
+            box-shadow: 0 15px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        .artTitleBox {
+            font-size: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        .artTitleBox p{
+            margin: 0;
+        }
+        .fullArtTitle {
+            text-transform: uppercase;
+        }
+        #fullArtistProfile {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        #fullArtistProfile img {
+            width: 100%;
+            height: auto;
+        }
+        .artDescBox {
+            font-size: 18px;
+            font-weight: normal;
+        }
+        .artMainDesc {
+            Height: 350px;
+            overflow-y: auto;
+        }
+        #backFullArt {
+            position: fixed;
+            display: flex;
+            top: 10%;
+            right: 10%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="horizontal-scroll">
         
         <div class="wall">
+            <div class="fullArtBox" style="display: none;">
+                <div class="fullArtContainer">
+                    <a id="backFullArt" onclick="closeFullArt()">X</a>
+                    <div class="artDiv">
+                        <img src="css/image/Spoliarium.jpg">
+                    </div>
+                    <div class="artDesc">
+                        <div class="artTitleBox">
+                            <div>
+                                <span>"<span class="fullArtTitle">Spoliarium</span>"</span> <div class="artDescBox"><span id="artistId">Juan Luna</span>, <span id="artDate">1884</span> </div> <div class="artDescBox"> Oil on canvas</div>
+                                <div class="artDescBox"> National Museum of Fine Arts, Manila</div>
+                            </div>
+                            <div id="fullArtistProfile"><img src="css/image/Juanluna.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="artMainDesc">
+                            <p id="art-desc">Spoliarium is a monumental oil painting by Filipino artist Juan Luna, completed in 1884. Measuring over seven meters wide, it is the largest painting in the collection of the National Museum of Fine Arts. The work won a gold medal at the Exposición Nacional de Bellas Artes in Madrid the same year.
+                                
+                            The painting depicts fallen gladiators being dragged into a dark chamber beneath a Roman arena. Their lifeless bodies are stripped of armor and dignity, while grieving women watch in anguish from the side. In contrast, Roman spectators and officials appear detached and indifferent, emphasizing the imbalance of power.
+
+                            Beyond its classical theme, Spoliarium is widely interpreted as an allegory of oppression during Spanish colonial rule in the Philippines. The suffering gladiators symbolize the Filipino people, while the indifferent Roman authorities represent colonial power. Through dramatic lighting, powerful composition, and emotional intensity, Luna conveys both tragedy and quiet resistance.
+
+                            Today, Spoliarium stands as a national cultural treasure and a powerful symbol of Filipino identity, sacrifice, and the struggle for dignity and freedom.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
             <a class="bckbtn" href="home2.html">BACK</a>
             <div class="art" id="spoliarium">
                 <div>
-                    <img class="artimg" src="css/image/Spoliarium.jpg" alt="">
+                    <img class="artimg" src="css/image/Spoliarium.jpg" alt="" onclick="openFullArt()">
                 </div>
                 <p>Spoliarium</p>
             </div>
@@ -156,7 +269,7 @@
             </div>
         </div>
         <div class="floor">
-                        floor test
+            floor test
         </div>
     </div>
     <script src="js/script.js"></script>

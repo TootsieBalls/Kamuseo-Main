@@ -2,6 +2,8 @@ let menuVisible = false;
 let themeSwitch = localStorage.getItem('homeTheme');
 let bb = document.getElementById('themes');
 bb.value = themeSwitch;
+var fullAucBox = document.getElementById('fullAucBox');
+var fullAuc = document.getElementById('fullAucImg');
 function showMenu() {
     menuVisible = !menuVisible;
     if (menuVisible) {
@@ -77,4 +79,14 @@ function navIndex(index) {
             document.getElementById('home').style.display = 'block';
             document.getElementById('nav1').classList.add("active");
     }
+}
+document.querySelectorAll('.aucart').forEach(function(card) {
+    card.addEventListener('click', function() {
+        const img = this.querySelector('img');
+        fullAucBox.style.display = "flex";
+        fullAuc.src = img.src;  
+    });
+});
+function closeFullAuc() {
+    fullAucBox.style.display = "none";
 }
