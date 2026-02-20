@@ -141,3 +141,6 @@ function closeFullArt() {
 function openFullArt() {
     document.querySelector('.fullArtBox').style.display = 'flex';
 }
+if(!localStorage.getItem('loggedInUserId')) {
+    window.location.href = "index.html";
+}

@@ -90,3 +90,11 @@ document.querySelectorAll('.aucart').forEach(function(card) {
 function closeFullAuc() {
     fullAucBox.style.display = "none";
 }
+
+function logOut() {
+    localStorage.removeItem('loggedInUserId');
+    window.location.href = "index.html";
+}
+if(!localStorage.getItem('loggedInUserId')) {
+    window.location.href = "index.html";
+}
