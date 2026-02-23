@@ -3,7 +3,7 @@ let themeSwitch = localStorage.getItem('homeTheme');
 let bb = document.getElementById('themes');
 bb.value = themeSwitch;
 var fullAucBox = document.getElementById('fullAucBox');
-var fullAuc = document.getElementById('fullAucImg');
+var fullAuc = document.getElementById('artImg');
 function showMenu() {
     menuVisible = !menuVisible;
     if (menuVisible) {
@@ -77,7 +77,6 @@ function navIndex(index) {
             break;
         case 99:
             document.getElementById('fullAucBox').style.display = 'block';
-            document.getElementById('nav4').classList.add("active");
             break;
         case 98:
             document.getElementById('artContestSubmit').style.display = 'block';
@@ -95,6 +94,7 @@ document.querySelectorAll('.aucart').forEach(function(card) {
         navIndex(99);
     });
 });
+
 function logOut() {
     localStorage.removeItem('loggedInUserId');
     window.location.href = "index.html";
