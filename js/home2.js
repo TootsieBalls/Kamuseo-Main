@@ -75,6 +75,10 @@ function navIndex(index) {
             document.getElementById('artistf').style.display = 'block';
             document.getElementById('nav4').classList.add("active");
             break;
+        case 99:
+            document.getElementById('fullAucBox').style.display = 'block';
+            document.getElementById('nav4').classList.add("active");
+            break;
         default:
             document.getElementById('home').style.display = 'block';
             document.getElementById('nav1').classList.add("active");
@@ -84,12 +88,10 @@ document.querySelectorAll('.aucart').forEach(function(card) {
     card.addEventListener('click', function() {
         const img = this.querySelector('img');
         fullAucBox.style.display = "flex";
-        fullAuc.src = img.src;  
+        fullAuc.src = img.src;
+        navIndex(99);
     });
 });
-function closeFullAuc() {
-    fullAucBox.style.display = "none";
-}
 
 function logOut() {
     localStorage.removeItem('loggedInUserId');
@@ -98,3 +100,15 @@ function logOut() {
 if(!localStorage.getItem('loggedInUserId')) {
     window.location.href = "index.html";
 }
+
+const input = document.getElementById("submContest");
+const preview = document.getElementById("uploadPreview");
+
+input.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+    }
+});

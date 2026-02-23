@@ -176,7 +176,8 @@ body {
 .home-section {
     height: 200px;
     width: 100%;
-    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url('image/homeimage.webp') no-repeat center/cover;
+    color: white;
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('image/homeimage.webp') no-repeat center/cover;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -184,10 +185,8 @@ body {
     align-items: center;
     text-align: center;
 }
-#curContest {
-    color: white;
-    font-size: 30px;
-    margin: 5px;
+.bigTitle {
+    font-size: 50px;
 }
 #joinContest {
     background: #00000077;
@@ -201,6 +200,8 @@ body {
 }
 #subDeadline {
     color: white;
+    font-size: 18px;
+    margin: 5px;
 }
 .featured-artworks {
     display: flex;
@@ -396,6 +397,7 @@ footer {
   padding: 3px;
   background-color: gray;
   color: var(--navt-col);
+  height: 50px;
 }
 
 .aucCont {
@@ -408,7 +410,7 @@ footer {
     flex-direction: column;
     min-width: 200px;
     width: 100%;
-    max-width: 30%;
+    max-width: 20%;
     aspect-ratio: 1 / 1;
     justify-content: center;
     align-items: center;
@@ -421,32 +423,28 @@ footer {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.aucart div {
-    bottom: 0;
-}
 .aucart img {
     display: flex;
     object-fit: contain;
     height: 100%;
     width: 100%;
 }
-.fullAucCt {
-    height: 100vh;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    position: fixed;
-    display: flex;
-    z-index: 0;
+#fullAucBox {
+    height: max-content;
+    min-height: calc(100vh - 100px);
+    position: relative;  
+    background: var(--base-color);
+    overflow-y: auto;
+    z-index: 10;
 }
 .full-auc {
-    width: 95%;
-    height: 95%;
-    margin: 2.5%;
-    position: fixed;
-    background: var(--base-color);
-    top: 0;
-    left: 0;
+    width: 100%;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
 }
 .full-auc span {
     position: absolute;
@@ -458,30 +456,30 @@ footer {
     cursor: pointer;
 }
 #auctitle {
-    margin-top: 20px;
     font-size: 30px;
     font-weight: bold;
-    
 }
 .imgauc {
-    margin: 20px 10px;
-    width: 40%;
+    width: 50%;
+    max-height: 600px;
+    min-width: 400px;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
 }
 .imgauc img{
     width: 100%;
-    max-width: 300px;
-    max-height: 300px;
+    min-width: 200px;
     object-fit: contain;
 }
 .descauc {
-    width: calc(60% - 20px);
-    overflow: none;
-}
-.aucbody {
-    margin-top: 10px;
+    min-width: 400px;
+    width: 50%;
+    padding: 5% 0;
+    height: auto;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .descauc p {
     width: 100%;
@@ -489,16 +487,11 @@ footer {
     overflow-wrap: break-word;
     text-align: left;
 }
-#aucartdesc {
-    height: 200px;
-    overflow: auto;
-
-}
 .biddingarea {
+    height: 45%;
     margin-top: 20px;
 }
 .biddingarea p {
-    margin-top: 5px;
     font-size: 25px;
 }
 .biddingarea input {
@@ -513,6 +506,13 @@ footer {
 .biddingarea button:active {
     background: var(--base-light);
 }
+.aucdescarea {
+    max-height: 40vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+
 .userprofile {
     width: 100px;
     height: 100px;
@@ -532,4 +532,76 @@ footer {
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+}
+
+/* -----Submit Art Contest-------*/
+
+#artContestSubmit {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    width: 100%;
+    height: calc(100vh - 100px);
+}
+
+#artContestSubmit div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#artContestSubmit form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.editdesc {
+    height: 100%;
+    width: 50%;
+    padding: 2%;
+}
+#contestSubmitDesc {
+    margin: 20px;
+    width: 100%;
+    height: 350px;
+    vertical-align: top;
+    box-sizing: border-box;
+    text-align: left;
+    padding: 5px;
+    font: 18px;
+}
+#contestSubmitTitle {
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+}
+.filedrop img{
+    width: 100%;
+    height: auto;
+    max-height: 90%;
+    object-fit: contain;
+}
+.filedrop {
+    width: 50%;
+    height: 100%;
+    user-select: none;
+}
+.dropFileArea {
+    margin: 5%;
+    padding: 5%;
+    width: 80%;
+    aspect-ratio: 1/1;
+    border: 3px dashed black;
+    border-radius: 50px;
+    overflow: hidden;
+    user-select: none;
+}
+.dropFileArea:hover {
+    padding: 2%;
+    font-size: 25px;
+    background-color: var(--base-light);
 }

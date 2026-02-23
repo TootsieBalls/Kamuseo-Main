@@ -120,7 +120,7 @@ function navIndex(index) {
             document.getElementById('nav3').classList.add("active");
             break;
         case 4:
-            document.getElementById('artistf').style.display = 'block';
+            document.getElementById('fullAucBox').style.display = 'block';
             document.getElementById('nav4').classList.add("active");
             break;
         default:
