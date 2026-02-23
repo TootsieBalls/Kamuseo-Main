@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-import { getFirestore, collection, getDocs, doc, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, doc, updateDoc, addDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-storage.js";
 
 const firebaseConfig = {
@@ -17,8 +17,19 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 // Check if user is logged in (Basic check)
-if(!localStorage.getItem('loggedInUserId')) {
+const userId = localStorage.getItem('loggedInUserId');
+if(!userId) {
     window.location.href = "index.html";
+} else {
+    // Verify if user is admin
+    getDoc(doc(db, "users", userId)).then((snap) => {
+        if(snap.exists()) {
+            if(snap.data().email !== "admin@admin.com") {
+                alert("Access Denied: Admins only.");
+                window.location.href = "home2.html";
+            }
+        }
+    });
 }
 
 // --- User Management ---

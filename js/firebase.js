@@ -37,6 +37,12 @@
   signUp.addEventListener('click', (event)=> {
     event.preventDefault();
     const email=document.getElementById('email-sp').value;
+
+    if(email.endsWith("@admin.com")) {
+        showMessage('Registration with @admin.com is not allowed.', 'signUpMessage');
+        return;
+    }
+
     const fName=document.getElementById('fName-sp').value;
     const lName=document.getElementById('lName-sp').value;
     const password=document.getElementById('password-sp').value;
