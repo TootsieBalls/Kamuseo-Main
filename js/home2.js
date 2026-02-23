@@ -79,6 +79,9 @@ function navIndex(index) {
             document.getElementById('fullAucBox').style.display = 'block';
             document.getElementById('nav4').classList.add("active");
             break;
+        case 98:
+            document.getElementById('artContestSubmit').style.display = 'block';
+            break;
         default:
             document.getElementById('home').style.display = 'block';
             document.getElementById('nav1').classList.add("active");
@@ -92,7 +95,6 @@ document.querySelectorAll('.aucart').forEach(function(card) {
         navIndex(99);
     });
 });
-
 function logOut() {
     localStorage.removeItem('loggedInUserId');
     window.location.href = "index.html";
