@@ -2,7 +2,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
   import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
-  import {getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js"
+  import {getFirestore, setDoc, doc, getDoc} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js"
 
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -82,16 +82,29 @@
     const auth=getAuth();
 
     signInWithEmailAndPassword(auth, email,password).then((userCredential) => {
-        showMessage('login is successful', 'signInMessage');
         const user=userCredential.user;
-        localStorage.setItem('loggedInUserId', user.uid);
-        window.location.href='home2.html';
+        const db=getFirestore();
+        const docRef=doc(db, "users", user.uid);
+        getDoc(docRef).then((docSnap)=>{
+            if (docSnap.exists()) {
+                if(docSnap.data().isBanned) {
+                    showMessage('This account has been banned.', 'signInMessage');
+                } else {
+                    showMessage('login is successful', 'signInMessage');
+                    localStorage.setItem('loggedInUserId', user.uid);
+                    window.location.href='home2.html';
+                }
+            } else {
+                // Safeguard against missing Firestore document for an authenticated user
+                showMessage('User data not found. Please contact support.', 'signInMessage');
+            }
+        })
     }).catch((error) => {
-        const errorCode=error.code;
+        const errorCode = error.code;
         if(errorCode==='auth/invalid-credential') {
             showMessage('Incorrect Email or Password', 'signInMessage');
         } else {
-            showMessage('Account Does Not Exist', 'signInMessage');
+            showMessage('An error occurred during login. Please try again.', 'signInMessage');
         }
     })
   })
