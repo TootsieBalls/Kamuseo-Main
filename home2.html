@@ -20,7 +20,7 @@
                 <div class="home-section">
                     <p class="bigTitle"><span id="contestTitle">Current Contest</span></p>
                     <p id="subdeadline">Submission Deadline: <span id="deadlineDate"> 01/01/26 </span> </p>
-                    <button id="joinContest">
+                    <button id="joinContest" onclick="navIndex(98)">
                     Join Contest
                     </button>
                 </div>
@@ -213,7 +213,7 @@
             <div class="homeindex" id="artContestSubmit">
                 <form id="art-contest-submit">
                     <div class="filedrop">
-                        <label class="dropFileArea"> Upload Photo Here.
+                        <label class="dropFileArea"> Upload Photo Here
                             <input type="file" accept="image/*" id="submContest" hidden>
                             <img id="uploadPreview" style="display:none;">
                         </label>
@@ -221,7 +221,7 @@
                     <div class="editdesc">
                         <input type="text" placeholder="Art Title" id="contestSubmitTitle">
                         <textarea type="text" placeholder="Art Description" id="contestSubmitDesc"></textarea>
-                        <button>Submit</button>
+                        <button onclick="uploadImage()">Submit</button>
                     </div>
                 </form>
             </div>

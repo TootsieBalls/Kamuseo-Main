@@ -29,6 +29,7 @@ import {getFirestore, getDoc, doc} from "https://www.gstatic.com/firebasejs/12.9
         getAuth(docRef).then((docSnap)=>{
             if(docSnap.exists()){
                 const userData=docSnap.data();
+                
             }
         })
     }
